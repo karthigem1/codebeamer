@@ -1,0 +1,27 @@
+kind: BuildConfig
+apiVersion: build.openshift.io/v1
+metadata:
+  name: codebeamer-app
+spec:
+  nodeSelector: null
+  output:
+    to:
+      kind: ImageStreamTag
+      name: 'codebeamer-app:latest'
+  resources: {}
+  strategy:
+    type: Docker
+    dockerStrategy:
+      env:
+        - name: HTTP_PROXY
+          value: 'http://10.47.33.53:3128'
+        - name: HTTPS_PROXY
+          value: 'http://10.47.33.53:3128'
+  postCommit: {}
+  source:
+    type: Git
+    git:
+      uri: 'https://github.com/karthigem1/codebeamer.git'
+  runPolicy: Serial
+status:
+
