@@ -5,10 +5,10 @@ ARG WEBSRVROOT=/home/appuser/codebeamer/tomcat/webapps/ROOT
 
 RUN whoami
 RUN ls -lah /home/appuser
+RUN chmod -R 0777 /home/appuser
 RUN chgrp -R 0 /home/appuser
 RUN chmod -R g+rwX /home/appuser
-#RUN chmod -R 0777 /home/appuser
 RUN ls -lah /home/appuser
 
-USER 1001:1001
+USER 1001
 RUN whoami
