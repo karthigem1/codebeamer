@@ -1,12 +1,13 @@
-FROM intland/codebeamer-git:21.09-SP4
+FROM intland/codebeamer-git:22.10-SP3
 LABEL maintainer="Karthikeyan Elangovan"
 
-ARG WEBSRVROOT=/home/appuser/codebeamer/tomcat/webapps/ROOT
-
-RUN whoami
-RUN ls -lah /home/appuser
-RUN chmod -R 0777 /home/appuser
-RUN ls -lah /home/appuser
+USER root
+RUN chgrp -R 0 /home/appuser && \
+   find /home/appuser -type d -exec chmod 770 {} \; && \
+   find /home/appuser -type f -exec chmod 660 {} \; && \
+   chmod 770 /home/appuser/*.sh && \
+   chmod 770 /home/appuser/codebeamer/bin/* && \
+   chmod -R 774 /home/appuser/codebeamer/logs
 
 USER 1001:1001
 RUN whoami
