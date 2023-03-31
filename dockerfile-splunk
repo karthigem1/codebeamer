@@ -10,4 +10,7 @@ RUN chmod -R 770 /opt/
 
 RUN ls -lah /opt
 
+RUN usermod -a -G root ansible
+RUN usermod -a -G root splunk
+
 RUN whoami
