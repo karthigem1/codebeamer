@@ -3,8 +3,10 @@ LABEL maintainer="Karthikeyan Elangovan"
 
 USER root
 
-RUN chgrp -R 0 /opt/ && \
-   chmod -R 770 /opt/
+RUN whoami
+RUN ls -lah /opt
+RUN chgrp -R 0 /opt/
+RUN chmod -R 770 /opt/
 
 RUN ls -lah /opt
 
