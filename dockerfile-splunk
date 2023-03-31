@@ -1,0 +1,11 @@
+FROM splunk/universalforwarder:8.2.10
+LABEL maintainer="Karthikeyan Elangovan"
+
+USER root
+
+RUN chgrp -R 0 /opt/ && \
+   chmod -R 770 /opt/
+
+RUN ls -lah /opt
+
+RUN whoami
