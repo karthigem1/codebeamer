@@ -36,11 +36,11 @@ WORKDIR ${SPLUNK_HOME}
 RUN groupadd -r -g ${GID} ${SPLUNK_GROUP} \
     && useradd -r -m -u ${UID} -g ${GID} -s /bin/bash ${SPLUNK_USER} 
 
-RUN ${SPLUNK_HOME}/bin/splunk enable boot-start -user splunk --accept-license --no-prompt --answer-yes && \
-    systemctl daemon-reload
+RUN sudo ${SPLUNK_HOME}/bin/splunk enable boot-start -user splunk --accept-license --no-prompt --answer-yes && \
+    sudo systemctl daemon-reload
   
 # Start the Splunk Universal Forwarder service
-RUN systemctl start splunk
+RUN sudo systemctl start splunk
 
 CMD ["/opt/splunkforwarder/bin/splunk", "start", "--accept-license", "--no-prompt"]
 
