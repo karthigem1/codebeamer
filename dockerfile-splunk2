@@ -10,14 +10,9 @@ RUN usermod -g 0 ${ANSIBLE_USER}
 RUN usermod -g 0 ${SPLUNK_USER}
 
 RUN chgrp -R 0 /opt && chmod -R g+rwx /opt
-
-USER ansible
-RUN ls -lah /home/ansible
-RUN chgrp -R 0 /home/ansible && chmod -R g+rwx /home/ansbile
-#RUN chgrp -R 0 /hom/ansible/.ansible && chmod -R g+rwx /home/ansible
+RUN chgrp -R 0 /home/ansible && chmod -R g+rwx /home/ansible
 RUN ls -lah /home/ansible
 
-USER splunk
 RUN ls -lah /home/splunk
 RUN chgrp -R 0 /home/splunk && chmod -R g+rwx /home/splunk
 RUN ls -lah /home/splunk
