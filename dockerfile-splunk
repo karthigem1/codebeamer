@@ -6,6 +6,8 @@ ENV SPLUNK_HOME=/opt/splunkforwarder \
     SPLUNK_USER=splunk
 
 USER root
+ENV http_proxy http://10.143.0.177:8080
+ENV https_proxy http://10.143.0.177:8080
 
 # Install required dependencies
 RUN dnf update
