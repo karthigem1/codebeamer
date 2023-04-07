@@ -10,9 +10,9 @@ ENV http_proxy http://10.143.0.177:8080
 ENV https_proxy http://10.143.0.177:8080
 
 # Install required dependencies
-RUN dnf update -y
+#RUN dnf update -y
 
-RUN dnf install wget -y
+#RUN dnf install wget -y
 
 # Download the Splunk Universal Forwarder RPM
 COPY ["splunkforwarder-9.0.0-6818ac46f2ec-linux-2.6-x86_64.rpm", "/tmp/splunkforwarder.rpm"]
@@ -24,6 +24,11 @@ RUN dnf install -y /tmp/splunkforwarder.rpm
 
 # Cleanup temporary files
 RUN rm -f /tmp/splunkforwarder.rpm
+
+RUN chgrp -R 0 /opt/splunkforwarder && chmod -R g+rwx /opt/splunkforwarder
+RUN ls -lah /opt/splunkforwarder
+
+USER splunk
 
 # Start the Splunk Universal Forwarder service
 CMD ["/opt/splunkforwarder/bin/splunk", "start", "--accept-license", "--no-prompt"]
