@@ -28,10 +28,14 @@ RUN rm -f /tmp/splunkforwarder.rpm
 RUN chgrp -R 0 ${SPLUNK_HOME} && chmod -R g+rwx ${SPLUNK_HOME}
 RUN ls -lah ${SPLUNK_HOME}
 
-USER splunk
 WORKDIR ${SPLUNK_HOME}
 
+RUN ${SPLUNK_HOME}/bin/splunk enable boot-start -user splunk --accept-license --no-prompt --answer-yes && \
+    systemctl daemon-reload
+  
 # Start the Splunk Universal Forwarder service
-CMD ["/bin/bash", "/opt/splunkforwarder/bin/splunk", "start", "--accept-license", "--no-prompt"]
+RUN systemctl start splunk
+
+CMD ["/bin/bash"]
 
 
