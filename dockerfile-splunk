@@ -25,11 +25,13 @@ RUN dnf install -y /tmp/splunkforwarder.rpm
 # Cleanup temporary files
 RUN rm -f /tmp/splunkforwarder.rpm
 
-RUN chgrp -R 0 /opt/splunkforwarder && chmod -R g+rwx /opt/splunkforwarder
-RUN ls -lah /opt/splunkforwarder
+RUN chgrp -R 0 ${SPLUNK_HOME} && chmod -R g+rwx ${SPLUNK_HOME}
+RUN ls -lah ${SPLUNK_HOME}
 
 USER splunk
+WORKDIR ${SPLUNK_HOME}
 
 # Start the Splunk Universal Forwarder service
-CMD ["/opt/splunkforwarder/bin/splunk", "start", "--accept-license", "--no-prompt"]
+CMD ["/bin/bash", "/opt/splunkforwarder/bin/splunk", "start", "--accept-license", "--no-prompt"]
+
 
