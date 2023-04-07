@@ -13,7 +13,7 @@ RUN chgrp -R 0 /opt && chmod -R g+rwx /opt
 RUN chgrp -R 0 /home/ansible && chmod -R g+rwx /home/ansible
 
 USER ansible
-RUN mkdir /home/ansible/.ansible && && chmod -R g+rwx /home/ansible/.ansible
+RUN mkdir /home/ansible/.ansible && chmod -R g+rwx /home/ansible/.ansible
 RUN ls -lah /home/ansible
 
 USER splunk
