@@ -3,4 +3,4 @@ LABEL maintainer="Karthikeyan Elangovan"
 
 USER root
 RUN chgrp -R 0 /opt
-RUN chgrp -R 0 /tmp
+RUN chgrp -R 0 /home/ansible
