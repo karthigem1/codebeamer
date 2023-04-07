@@ -31,12 +31,8 @@ RUN ls -lah ${SPLUNK_HOME}
 WORKDIR ${SPLUNK_HOME}
 
 
-RUN sudo ${SPLUNK_HOME}/bin/splunk enable boot-start -user splunk --accept-license --no-prompt --answer-yes && \
-    sudo systemctl daemon-reload
-  
-# Start the Splunk Universal Forwarder service
-RUN sudo systemctl start splunk
+RUN ${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt
 
-CMD ["/opt/splunkforwarder/bin/splunk", "start", "--accept-license", "--no-prompt"]
+CMD ["/bin/bash"]
 
 
