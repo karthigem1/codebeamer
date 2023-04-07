@@ -2,18 +2,19 @@ FROM splunk/universalforwarder:8.2.10
 LABEL maintainer="Karthikeyan Elangovan"
 
 ARG ANSIBLE_USER=ansible
-ARG ANSIBLE_ID=999
 ARG SPLUNK_USER=splunk
 ARG SPLUNK_ID=41812
 USER root
 
-RUN useradd -r -m -u ${ANSIBLE_ID} -g 0 -s /bin/bash ${ANSIBLE_USER} 
-RUN useradd -r -m -u ${SPLUNK_ID} -g 0 -s /bin/bash ${SPLUNK_USER}
-RUN usermod -aG ${ANSIBLE_ID} ${SPLUNK_USER}
+RUN usermod -g 0 ${ANSIBLE_USER}
+RUN usermod -g 0 ${SPLUNK_USER}
 
 RUN chgrp -R 0 /opt && chmod -R g+rwx /opt
 RUN ls -lah /home/ansible
 RUN ls -lah /home/splunk
 RUN chgrp -R 0 /home/ansible && chmod -R g+rwx /home/ansbile
+RUN chgrp -R 0 /home/splunk && chmod -R g+rwx /home/splunk
 RUN ls -lah /home/ansible
 RUN chgrp -R 0 /hom/ansible/.ansible && chmod -R g+rwx /home/ansible
+RUN ls -lah /home/ansible
+RUN ls -lah /home/splunk
