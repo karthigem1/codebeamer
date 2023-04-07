@@ -5,6 +5,9 @@ ENV SPLUNK_HOME=/opt/splunkforwarder \
     SPLUNK_GROUP=splunk \
     SPLUNK_USER=splunk
 
+ARG UID=41812
+ARG GID=41812
+
 USER root
 ENV http_proxy http://10.143.0.177:8080
 ENV https_proxy http://10.143.0.177:8080
@@ -30,12 +33,15 @@ RUN ls -lah ${SPLUNK_HOME}
 
 WORKDIR ${SPLUNK_HOME}
 
+RUN groupadd -r -g ${GID} ${SPLUNK_GROUP} \
+    && useradd -r -m -u ${UID} -g ${GID} -s /bin/bash ${SPLUNK_USER} 
+
 RUN ${SPLUNK_HOME}/bin/splunk enable boot-start -user splunk --accept-license --no-prompt --answer-yes && \
     systemctl daemon-reload
   
 # Start the Splunk Universal Forwarder service
 RUN systemctl start splunk
 
-CMD ["/bin/bash"]
+CMD ["/opt/splunkforwarder/bin/splunk", "start", "--accept-license", "--no-prompt"]
 
 
