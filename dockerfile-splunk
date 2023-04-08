@@ -32,6 +32,6 @@ WORKDIR ${SPLUNK_HOME}
 
 CMD ["/bin/bash", "-c", "${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt"]
 
-ENTRYPOINT ["/bin/bash"]
+ENTRYPOINT ["/bin/bash while true; do sleep 1; done"]
 
 
