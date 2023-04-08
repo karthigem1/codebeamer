@@ -30,6 +30,8 @@ RUN ls -lah ${SPLUNK_HOME}
 
 WORKDIR ${SPLUNK_HOME}
 
-CMD ["${SPLUNK_HOME}/bin/splunk", "start", "--accept-license", "--no-prompt", "&&", "/bin/bash"]
+CMD ["/bin/bash", "-c", "${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt"]
 
+# Keep the container running
+ENTRYPOINT ["tail", "-f", "/dev/null"]
 
