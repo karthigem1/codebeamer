@@ -33,9 +33,9 @@ RUN ls -lah ${SPLUNK_HOME}
 
 WORKDIR ${SPLUNK_HOME}
 
-#RUN ${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt
+RUN ${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt --answer-yes
 
-RUN "${SPLUNK_HOME}/bin/splunk start --accept-license  --answer-yes --no-prompt --seed-passwd ${SPLUNK_PASSWORD}"
+#RUN "${SPLUNK_HOME}/bin/splunk start --accept-license  --answer-yes --no-prompt --seed-passwd ${SPLUNK_PASSWORD}"
 
 ENTRYPOINT ["/bin/bash", "-c", "while true; do sleep 1; done"]
 
