@@ -5,6 +5,9 @@ ENV SPLUNK_HOME=/opt/splunkforwarder \
     SPLUNK_GROUP=splunk \
     SPLUNK_USER=splunk
 
+ARG SPLUNK_PASSWORD
+ENV SPLUNK_PASSWORD=$SPUNK_PASSWORD
+
 USER root
 ENV http_proxy http://10.143.0.177:8080
 ENV https_proxy http://10.143.0.177:8080
@@ -32,7 +35,7 @@ WORKDIR ${SPLUNK_HOME}
 
 #RUN ${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt
 
-CMD "${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt"
+CMD "${SPLUNK_HOME}/bin/splunk start --accept-license  --answer-yes --no-prompt --seed-passwd ${SPLUNK_PASSWORD}"
 
 ENTRYPOINT ["/bin/bash", "-c", "while true; do sleep 1; done"]
 
