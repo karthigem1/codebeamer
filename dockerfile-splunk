@@ -30,8 +30,8 @@ RUN ls -lah ${SPLUNK_HOME}
 
 WORKDIR ${SPLUNK_HOME}
 
-RUN echo ${"SPLUNK_PASSWORD"}
 RUN echo ${SPLUNK_USER}
+RUN echo "$SPLUNK_PASSWORD"
 
 #RUN ${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt --answer-yes --seed-passwd ${SPLUNK_PASSWORD}"
 
