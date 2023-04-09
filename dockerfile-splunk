@@ -30,9 +30,9 @@ RUN ls -lah ${SPLUNK_HOME}
 
 WORKDIR ${SPLUNK_HOME}
 
-RUN ${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt
+#RUN ${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt
 
-#CMD ["/bin/bash", "-c", "${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt"]
+CMD "${SPLUNK_HOME}/bin/splunk start --accept-license --no-prompt"
 
 ENTRYPOINT ["/bin/bash", "-c", "while true; do sleep 1; done"]
 
