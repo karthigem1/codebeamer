@@ -1,0 +1,14 @@
+FROM splunk/universalforwarder:8.2.10
+LABEL maintainer="Karthikeyan Elangovan"
+
+ARG NFS_GID=704643777
+ARG NFS_USER=nfs
+
+USER root
+
+RUN groupadd -r -g ${NFS_GID} ${NFS_USER}
+RUN usermod -a -G ${NFS_GID} splunk
+
+RUN id splunk
+
+USER ansible
