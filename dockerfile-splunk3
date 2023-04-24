@@ -6,7 +6,7 @@ ARG NFS_USER=nfs
 
 USER root
 
-#RUN groupadd -r -g ${NFS_GID} ${NFS_USER}
+RUN groupadd -r -g ${NFS_GID} ${NFS_USER}
 RUN usermod -a -G ${NFS_GID} splunk
 
 RUN id splunk
